@@ -14,6 +14,9 @@ def BASE(request):
 def inicio(request):
     return render(request, 'index.html')
 
+
+
+
 # ----- INICIO DE SESION --------------------------------
 @login_required
 def signout(request):
@@ -54,3 +57,7 @@ def signup(request):
             'form': UserCreationForm,
             "error": 'Password fo not match'
         })
+
+@login_required
+def padron_situacion(request):
+    return render(request, 'padron/situacion.html')
