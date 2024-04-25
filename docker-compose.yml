@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "django"
+      ACCEPT_EULA: "Y"
+
+  web:
+    build: ./django_dis
+    command: gunicorn django_dis.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./django_dis/:/code/
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  nginx:
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web

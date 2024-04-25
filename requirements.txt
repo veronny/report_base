@@ -1,2 +1,5 @@
-django==5.0.1
+Django==5.0.1
 mssql-django==1.4
+gunicorn==21.2.0
+python-dotenv==0.21.0
+whitenoise==6.2.0
